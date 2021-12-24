@@ -32,6 +32,11 @@ app.get('/users/:id',function(req,res){
 	})
 })
 
+/* 
+As a security precaution, you should never save passwords directly into your database. 
+Use a tool like bcrypt to save a hashed version, which will be decoded at login. 
+*/
+
 // handle a POST request made to the 'login'
 app.post('/login',function(req,res){
     // Typically passwords are encrypted using something like bcrypt before sending to database
@@ -43,7 +48,7 @@ app.post('/login',function(req,res){
     const mockPassword="superSecret";
 
     if (username===mockUsername && password===mockPassword){
-         res.json({
+         res.json({ // send a JSON file with an additional value
               success: true,
               message: 'password and username match!',
               token: 'encrypted token goes here'
